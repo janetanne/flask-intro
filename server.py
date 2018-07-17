@@ -50,7 +50,21 @@ def say_hello():
           	<option value='wonderful'>Wonderful</option>
           	<option value='smashing'>Smashing</option>
           	<option value='lovely'>Lovely</option>
-          <input type="submit" value="Submit">
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+          
+        <br>
+        <form action="/diss">
+          What's your name? <input type="text" name="person"><br><br>
+          Choose an insult! <select name="mean_thing">
+            <option value='stupid'>stupid</option>
+            <option value='horrible'>horrible</option>
+            <option value='terribad'>terribad</option>
+            <option value='meanie'>meanie</option>
+            <option value='fartface'>fartface</option>
+            </select>
+            <input type="submit" value="Submit">
         </form>
       </body>
     </html>
@@ -76,6 +90,27 @@ def greet_person():
       </body>
     </html>
     """.format(player, compliment)
+
+
+@app.route('/diss')
+def diss_person():
+    """Get user by name."""
+
+    player = request.args.get("person")
+
+    insult = request.args.get("mean_thing")
+
+    return """
+    <!doctype html>
+    <html>
+      <head>
+        <title>A Diss</title>
+      </head>
+      <body>
+        Hi, {}! I think you're {}!
+      </body>
+    </html>
+    """.format(player, insult)
 
 
 if __name__ == '__main__':
